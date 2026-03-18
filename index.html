@@ -1,1 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sourcewell Fleet – Future-proof your fleet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --color-white:      #ffffff;
+      --color-bg-light:   #f7f8f9;
+      --color-steel:      #506d85;
+      --color-body:       #455a64;
+      --color-blue:       #027abb;
+      --color-divider:    #c5d0d8;
+      --font-main:        'Source Sans 3', sans-serif;
+      --max-w:            1200px;
+      --px-outer:         60px;
+    }
+
+    html { font-family: var(--font-main); color: var(--color-body); background: var(--color-white); }
+
+    img { display: block; max-width: 100%; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Typography helpers ───────────────────────────────────── */
+    .h1 { font-size: 50px; font-weight: 300; line-height: 60px; color: var(--color-steel); }
+    .h2 { font-size: 42px; font-weight: 300; line-height: 48px; color: var(--color-steel); }
+    .h3 { font-size: 28px; font-weight: 400; line-height: 38px; color: var(--color-body); }
+    .body1 { font-size: 18px; font-weight: 400; line-height: 30px; color: var(--color-body); }
+    .link-blue { font-size: 18px; font-weight: 700; line-height: 30px; color: var(--color-blue); cursor: pointer; }
+    .link-blue:hover { text-decoration: underline; }
+
+    /* ── Layout helpers ───────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--px-outer);
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--color-divider);
+    }
+
+    /* ── Button ───────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-blue);
+      color: var(--color-white);
+      font-family: var(--font-main);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+      padding: 15px 30px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: #015f91; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-blue);
+      color: var(--color-white);
+      font-family: var(--font-main);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 18px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .btn-submit:hover { background: #015f91; }
+
+    /* ══════════════════════════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════════════════════════ */
+    .site-header {
+      width: 100%;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+    .site-header__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--color-steel);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-mark svg { width: 26px; height: 26px; fill: white; }
+    .logo-wordmark {
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--color-steel);
+      letter-spacing: 0.5px;
+    }
+    .site-header__nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .site-header__nav a {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--color-body);
+      transition: color 0.15s;
+    }
+    .site-header__nav a:hover { color: var(--color-blue); }
+    .site-header__cta { font-size: 15px !important; padding: 10px 22px !important; }
+
+    /* ══════════════════════════════════════════════════════════
+       SECTION 1 – Hero
+    ══════════════════════════════════════════════════════════ */
+    .hero {
+      background: var(--color-bg-light);
+      overflow: hidden;
+      position: relative;
+      min-height: 500px;
+    }
+    .hero__inner {
+      display: flex;
+      align-items: center;
+      min-height: 500px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      max-width: 500px;
+      padding: 60px 0;
+    }
+    .hero__image {
+      position: absolute;
+      right: -60px;
+      top: 0;
+      bottom: 0;
+      width: 58%;
+      overflow: hidden;
+    }
+    .hero__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      /* fade left edge to blend with bg */
+      mask-image: linear-gradient(to right, transparent 0%, black 18%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       SECTION 2 – Fleet health
+    ══════════════════════════════════════════════════════════ */
+    .section-fleet-health {
+      padding: 72px 0;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       SECTION 3 – Drive toward tomorrow
+    ══════════════════════════════════════════════════════════ */
+    .section-drive {
+      padding: 72px 0;
+      background: var(--color-white);
+    }
+    .section-drive__header {
+      text-align: center;
+      margin-bottom: 65px;
+    }
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .card {
+      background: var(--color-bg-light);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .card__icon {
+      width: 46px;
+      height: 46px;
+      background: var(--color-steel);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .card__icon svg { width: 22px; height: 22px; fill: white; }
+    .card__text { display: flex; flex-direction: column; gap: 15px; }
+
+    /* ══════════════════════════════════════════════════════════
+       SECTION 4 – Simplify optimization
+    ══════════════════════════════════════════════════════════ */
+    .section-simplify {
+      background: var(--color-steel);
+      padding: 60px;
+    }
+    .section-simplify .h2,
+    .section-simplify .h3,
+    .section-simplify .body1 { color: var(--color-bg-light); }
+    .section-simplify__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+    .section-simplify__divider {
+      height: 1px;
+      background: rgba(247,248,249,0.3);
+      margin-bottom: 60px;
+    }
+    .four-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px 30px;
+    }
+    .feature { display: flex; flex-direction: column; gap: 16px; }
+
+    /* ══════════════════════════════════════════════════════════
+       SECTION 5 – Ride with experts
+    ══════════════════════════════════════════════════════════ */
+    .section-experts {
+      padding: 80px 0;
+    }
+    .experts__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .experts__photo {
+      border-radius: 4px;
+      overflow: hidden;
+      min-height: 420px;
+      background: var(--color-bg-light);
+      position: relative;
+    }
+    .experts__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+    .experts__content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-input {
+      height: 57px;
+      border: 1px solid var(--color-steel);
+      border-radius: 5px;
+      padding: 15px 10px;
+      font-family: var(--font-main);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--color-steel);
+      background: var(--color-white);
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-input::placeholder { color: var(--color-steel); opacity: 0.7; }
+    .form-input:focus { border-color: var(--color-blue); box-shadow: 0 0 0 3px rgba(2,122,187,0.12); }
+
+    /* ══════════════════════════════════════════════════════════
+       SECTION 6 – EV Education
+    ══════════════════════════════════════════════════════════ */
+    .section-education {
+      padding: 80px 0;
+    }
+    .education__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+    .resource-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .resource-card__thumb {
+      width: 100%;
+      height: 284px;
+      overflow: hidden;
+      background: var(--color-steel);
+      border-radius: 2px;
+    }
+    .resource-card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .resource-card__text {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════════ */
+    .site-footer {
+      background: var(--color-steel);
+      padding: 48px 0;
+    }
+    .site-footer__inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .footer-brand__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-brand__name {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--color-white);
+    }
+    .footer-brand__tagline {
+      font-size: 13px;
+      color: rgba(247,248,249,0.7);
+      line-height: 20px;
+      max-width: 280px;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 60px;
+    }
+    .footer-nav__col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-nav__col-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(247,248,249,0.5);
+      margin-bottom: 4px;
+    }
+    .footer-nav__col a {
+      font-size: 14px;
+      color: rgba(247,248,249,0.85);
+      transition: color 0.15s;
+    }
+    .footer-nav__col a:hover { color: var(--color-white); }
+    .footer-social {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 16px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(247,248,249,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .social-icon:hover { background: rgba(247,248,249,0.3); }
+    .social-icon svg { width: 16px; height: 16px; fill: var(--color-white); }
+    .footer-legal {
+      font-size: 12px;
+      color: rgba(247,248,249,0.45);
+      line-height: 18px;
+      text-align: right;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      :root { --px-outer: 40px; }
+      .hero__image { width: 55%; right: -40px; }
+    }
+
+    @media (max-width: 900px) {
+      :root { --px-outer: 30px; }
+      .h1 { font-size: 40px; line-height: 48px; }
+      .h2 { font-size: 34px; line-height: 40px; }
+
+      .hero__content { max-width: 420px; }
+      .hero__image { width: 50%; }
+
+      .two-col { grid-template-columns: 1fr; gap: 20px; }
+      .cards-row { grid-template-columns: 1fr; }
+      .four-col { grid-template-columns: 1fr; gap: 40px; }
+      .experts__inner { grid-template-columns: 1fr; }
+      .experts__photo { min-height: 300px; }
+      .education__header { grid-template-columns: 1fr; gap: 20px; }
+      .resource-cards { grid-template-columns: 1fr; }
+      .section-simplify__header { grid-template-columns: 1fr; }
+      .footer-nav { gap: 30px; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --px-outer: 20px; }
+      .h1 { font-size: 32px; line-height: 40px; }
+      .h2 { font-size: 28px; line-height: 36px; }
+      .h3 { font-size: 22px; line-height: 30px; }
+      .body1 { font-size: 16px; line-height: 26px; }
+
+      .hero { min-height: auto; }
+      .hero__inner { flex-direction: column; min-height: auto; }
+      .hero__content { max-width: 100%; padding: 40px 0 200px; }
+      .hero__image { position: static; width: 100%; height: 220px; right: auto; mask-image: none; -webkit-mask-image: none; }
+      .hero__image img { mask-image: none; -webkit-mask-image: none; }
+
+      .section-simplify { padding: 40px var(--px-outer); }
+      .site-footer__inner { flex-direction: column; }
+      .footer-social { align-items: flex-start; }
+      .footer-legal { text-align: left; }
+      .site-header__nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="container">
+      <div class="site-header__inner">
+        <div class="site-header__logo">
+          <div class="logo-mark">
+            <!-- Sourcewell-style "S" mark -->
+            <svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 2C7.477 2 3 6.477 3 12c0 3.09 1.394 5.86 3.6 7.74L5 22h7c.34 0 .674-.02 1-.056C18.523 21.446 23 17.198 23 12 23 6.477 18.523 2 13 2zm0 17a7 7 0 110-14 7 7 0 010 14zm-2-9.5c0-.828.672-1.5 1.5-1.5h2a.5.5 0 010 1h-2a.5.5 0 000 1h1a1.5 1.5 0 010 3H11.5a.5.5 0 010-1H13a.5.5 0 000-1h-1a1.5 1.5 0 01-1.5-1.5h.5z"/>
+            </svg>
+          </div>
+          <span class="logo-wordmark">Sourcewell</span>
+        </div>
+        <nav class="site-header__nav">
+          <a href="#">About</a>
+          <a href="#">Contracts</a>
+          <a href="#">Resources</a>
+          <a href="#">For Vendors</a>
+          <a href="#">Contact</a>
+          <button class="btn-primary site-header__cta">Register</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SECTION 1 – Hero ───────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <h1 class="h1">Future-proof<br>your fleet</h1>
+          <p class="body1">It's time to revitalize your fleet. Meet sustainability requirements and embrace ongoing optimization with our electric vehicles (EVs), parts, and telematics contracts.</p>
+          <div>
+            <button class="btn-primary">Get support</button>
+          </div>
+        </div>
+        <div class="hero__image">
+          <img
+            src="https://www.figma.com/api/mcp/asset/057e687f-660a-4efa-95df-98d6c14f3f19"
+            alt="Electric fleet vehicles"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2 – Fleet health ──────────────────────────── -->
+  <section class="section-fleet-health">
+    <div class="container">
+      <div class="two-col">
+        <h2 class="h2">Fleet health is wealth</h2>
+        <p class="body1">Streamline procurement processes to maximize fleet efficiency and impact. Our cooperative contracts quickly connect you to solutions within your budget and instill confidence in your fleet's future.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- ── SECTION 3 – Drive toward tomorrow ─────────────────── -->
+  <section class="section-drive">
+    <div class="container">
+      <div class="section-drive__header">
+        <h2 class="h2">Drive toward tomorrow</h2>
+      </div>
+      <div class="cards-row">
+
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="card__icon">
+            <!-- EV / leaf icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-8 2l3.5-3.5C13.5 1.5 9 5 9 10c0 1.5.5 3 1.5 4.5L17 8z"/>
+            </svg>
+          </div>
+          <div class="card__text">
+            <h3 class="h3">Embrace strategic electrification</h3>
+            <p class="body1">With sustainability top of mind for procurement leaders in every state, EVs enable agencies to comply with environmental regulations. Our cooperative contracts provide access to a wide range of EV options so you can achieve sustainability goals and operational efficiency.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="card__icon">
+            <!-- wrench / tool icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+            </svg>
+          </div>
+          <div class="card__text">
+            <h3 class="h3">Keep vehicles on the road</h3>
+            <p class="body1">With Sourcewell, your agency can extend the lifespan of its vehicles. Our cooperative contracts for parts and maintenance ensure you have what you need to keep your fleet running smoothly, minimize downtime, and maximize productivity.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="card__icon">
+            <!-- chart / data icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+            </svg>
+          </div>
+          <div class="card__text">
+            <h3 class="h3">Navigate purchasing complexity</h3>
+            <p class="body1">We simplify the complexities of fleet modernization. Our expert team and pre-vetted cooperative contracts guide you through every step from procurement to implementation for seamless fleet upgrades.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4 – Simplify optimization ─────────────────── -->
+  <section class="section-simplify">
+    <div style="max-width: var(--max-w); margin: 0 auto;">
+      <div class="section-simplify__header">
+        <h2 class="h2">Simplify optimization with cooperative purchasing</h2>
+        <p class="body1">Sourcewell helps you find a range of contracts to optimize your fleet, including EVs, maintenance, and parts and telematics, saving you time and money.</p>
+      </div>
+      <div class="section-simplify__divider"></div>
+      <div class="four-col">
+        <div class="feature">
+          <h3 class="h3">Transition to EVs</h3>
+          <p class="body1">Reduce fuel emissions and take advantage of cost savings with a wide variety of electric vehicle contracts.</p>
+        </div>
+        <div class="feature">
+          <h3 class="h3">Streamline maintenance and parts</h3>
+          <p class="body1">Keep your fleet in top shape with essential parts and maintenance services contracts.</p>
+        </div>
+        <div class="feature">
+          <h3 class="h3">Make data-driven decisions</h3>
+          <p class="body1">Optimize routes, monitor vehicle performance, and identify areas of improvement with telematics contracts.</p>
+        </div>
+        <div class="feature">
+          <h3 class="h3">Save time and money</h3>
+          <p class="body1">Sourcewell's cooperative contracts are competitively sourced to make fleet management more efficient and cost-effective.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5 – Ride with experts ─────────────────────── -->
+  <section class="section-experts">
+    <div class="container">
+      <div class="experts__inner">
+        <div class="experts__photo">
+          <img
+            src="https://www.figma.com/api/mcp/asset/96980728-a30c-47ea-8b6d-9dd0a169ebb9"
+            alt="Fleet professionals"
+          />
+        </div>
+        <div class="experts__content">
+          <h2 class="h2">Ride with experts</h2>
+          <p class="body1">We're a government agency, just like you. We understand your commitment to your community, your compliance responsibilities, and your procurement needs because we've been there. We'll empower you to make smart, strategic fleet decisions and prepare your fleet for the future.</p>
+          <div class="form-fields">
+            <input class="form-input" type="text"  placeholder="Name*" />
+            <input class="form-input" type="email" placeholder="Email*" />
+            <input class="form-input" type="text"  placeholder="Resources*" />
+          </div>
+          <div>
+            <button class="btn-submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- ── SECTION 6 – EV Education ──────────────────────────── -->
+  <section class="section-education">
+    <div class="container">
+      <div class="education__header">
+        <h2 class="h2">Get EV education</h2>
+        <p class="body1">Explore additional resources to better understand the environmental, cost and operational pay-offs of electrification, and devise a strategy for long-term optimization.</p>
+      </div>
+      <div class="resource-cards">
+
+        <!-- Resource 1 -->
+        <div class="resource-card">
+          <div class="resource-card__thumb">
+            <img
+              src="https://www.figma.com/api/mcp/asset/70737493-2fce-41f1-a794-edb6aa25a091"
+              alt="Public Fleet Electrification Guide"
+            />
+          </div>
+          <div class="resource-card__text">
+            <h3 class="h3">Public Fleet Electrification Guide</h3>
+            <p class="body1">Is your public fleet ready for electrification?</p>
+            <a href="#" class="link-blue">Download the guide</a>
+          </div>
+        </div>
+
+        <!-- Resource 2 -->
+        <div class="resource-card">
+          <div class="resource-card__thumb" style="background: var(--color-steel);"></div>
+          <div class="resource-card__text">
+            <h3 class="h3">Lorem ipsum dolor sit amet consectetur.</h3>
+            <p class="body1">Lorem ipsum dolor sit amet consectetur. Mattis nisl lacinia.</p>
+            <a href="#" class="link-blue">Download the guide</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <div class="footer-brand__logo">
+            <div class="logo-mark" style="background: rgba(247,248,249,0.2);">
+              <svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 2C7.477 2 3 6.477 3 12c0 3.09 1.394 5.86 3.6 7.74L5 22h7c.34 0 .674-.02 1-.056C18.523 21.446 23 17.198 23 12 23 6.477 18.523 2 13 2zm0 17a7 7 0 110-14 7 7 0 010 14z"/>
+              </svg>
+            </div>
+            <span class="footer-brand__name">Sourcewell</span>
+          </div>
+          <p class="footer-brand__tagline">Empowering communities through cooperative purchasing solutions.</p>
+        </div>
+
+        <nav class="footer-nav">
+          <div class="footer-nav__col">
+            <span class="footer-nav__col-title">Solutions</span>
+            <a href="#">Fleet &amp; Vehicles</a>
+            <a href="#">Construction</a>
+            <a href="#">Technology</a>
+            <a href="#">Facilities</a>
+          </div>
+          <div class="footer-nav__col">
+            <span class="footer-nav__col-title">Company</span>
+            <a href="#">About Us</a>
+            <a href="#">Compliance &amp; Legal</a>
+            <a href="#">Contact</a>
+            <a href="#">Sustainability</a>
+          </div>
+          <div class="footer-nav__col">
+            <span class="footer-nav__col-title">Resources</span>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Cookie Settings</a>
+          </div>
+        </nav>
+
+        <div class="footer-social">
+          <div class="social-icons">
+            <!-- Facebook -->
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </div>
+            <!-- Twitter/X -->
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+            </div>
+            <!-- LinkedIn -->
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <!-- YouTube -->
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+            </div>
+          </div>
+          <p class="footer-legal">© 2024 Sourcewell. All rights reserved.</p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
